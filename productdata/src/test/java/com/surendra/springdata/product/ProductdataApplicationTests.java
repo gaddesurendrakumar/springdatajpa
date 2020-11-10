@@ -27,7 +27,7 @@ class ProductdataApplicationTests {
 	@Test
 	public void testCreate() {
 		Product product = new Product();
-		product.setId(1);
+		product.setId(1L);
 		product.setName("Iphone");
 		product.setDesc("Awesome");
 		product.setPrice(1000d);
@@ -58,6 +58,12 @@ class ProductdataApplicationTests {
 			System.out.println("Deleting a product");
 			repository.deleteById(1);
 		}
+	}
+	
+	@Test
+	public void testCount() {
+		System.out.println("Total Records===============>>>>>>>>>>>>>>>" + repository.count());
+
 	}
 
 }
