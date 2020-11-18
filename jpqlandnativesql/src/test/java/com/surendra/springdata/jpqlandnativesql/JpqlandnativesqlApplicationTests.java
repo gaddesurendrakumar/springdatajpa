@@ -2,9 +2,12 @@ package com.surendra.springdata.jpqlandnativesql;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import com.surendra.springdata.jpqlandnativesql.entities.Student;
 import com.surendra.springdata.jpqlandnativesql.repos.StudentRepository;
@@ -51,5 +54,28 @@ class JpqlandnativesqlApplicationTests {
 		System.out.println(repository.findAllStudentsWithFirstName("Bill"));
 	}
 	
+	
+	@Test
+	public void testFindAllStudentsByScores() {
+		System.out.println(repository.findStudentsForGivenScores(80, 90));
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	public void testDeleteStudentsByFirstName() {
+		repository.deleteStudentsByFirstName("Bill");
+	}
+
+	@Test
+	public void testFindAllStudentNQ() {
+		System.out.println(repository.findAllStudentNQ());
+	}
+	
+	@Test
+	public void testFindByFirstNameNQ() {
+		System.out.println(repository.findByFirstNQ("Bill"));
+	}
+
 	
 }
